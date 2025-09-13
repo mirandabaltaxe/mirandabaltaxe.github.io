@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My GitHub Site</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1e1e1e; /* Dark gray */
+      color: #eaeaea; /* Light text */
+      line-height: 1.6;
+      scroll-behavior: smooth; /* enables smooth scroll */
+    }
+
+    /* --- NAVBAR --- */
+    nav {
+      position: sticky;
+      top: 0;
+      background: #111;
+      padding: 0.8rem 1rem;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: #eaeaea;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: #66b2ff;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: #2a2a2a;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+
+    header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 3px solid #444;
+    }
+
+    header h1 {
+      margin: 0.5rem 0;
+      font-size: 2rem;
+      color: #ffffff;
+    }
+
+    header p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1rem;
+      color: #ccc;
+    }
+
+    section {
+      padding: 3rem 1rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    section h2 {
+      margin-bottom: 1.5rem;
+      font-size: 1.75rem;
+      border-bottom: 2px solid #444;
+      padding-bottom: 0.5rem;
+      color: #ffffff;
+    }
+
+    .projects, .cv {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: #2e2e2e;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+
+    .project-card h3 {
+      margin-top: 0;
+      color: #ffffff;
+    }
+
+    .project-card p {
+      color: #bbb;
+    }
+
+    a {
+      color: #66b2ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #888;
+      background: #2a2a2a;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#cv">CV</a></li>
+    </ul>
+  </nav>
+
+  <!-- HEADER / ABOUT -->
+  <header id="about">
+    <img src="your-photo.jpg" alt="Your Name">
+    <h1>Your Name</h1>
+    <p>
+      Welcome! I’m a [your role: e.g. hardware engineer / sports tech enthusiast]. 
+      I work on [brief about you].  
+      This site showcases my projects and CV.
+    </p>
+  </header>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="project-card">
+        <h3>Project One</h3>
+        <p>Short description of what you built, tools used, or goals achieved.</p>
+        <a href="https://github.com/yourusername/project-one">View on GitHub</a>
+      </div>
+      <div class="project-card">
+        <h3>Project Two</h3>
+        <p>Another short description here.</p>
+        <a href="https://github.com/yourusername/project-two">View on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CV -->
+  <section id="cv">
+    <h2>CV</h2>
+    <div class="cv">
+      <p>You can <a href="cv.pdf" target="_blank">download my CV here</a>.</p>
+      <!-- Or embed your CV directly:
+      <iframe src="cv.pdf" width="100%" height="600px" style="border:none;"></iframe>
+      -->
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Your Name | Built with GitHub Pages</p>
+  </footer>
+
+</body>
+</html>
