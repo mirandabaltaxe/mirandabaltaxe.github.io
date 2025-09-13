@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,20 +9,26 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #1e1e1e; /* Dark gray */
-      color: #eaeaea; /* Light text */
+      background-color: #1e1e1e;
+      /* Dark gray */
+      color: #eaeaea;
+      /* Light text */
       line-height: 1.6;
-      scroll-behavior: smooth; /* enables smooth scroll */
+      scroll-behavior: smooth;
+      /* enables smooth scroll */
     }
 
     /* --- NAVBAR --- */
     nav {
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      width: 100%;
       background: #111;
+      /* solid dark bar */
       padding: 0.8rem 1rem;
       z-index: 1000;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
     }
 
     nav ul {
@@ -44,34 +51,40 @@
       color: #66b2ff;
     }
 
+    /* --- HEADER / HERO IMAGE --- */
     header {
+      position: relative;
+      height: 100vh;
+      /* full screen height */
+      background: url("assets/images/IMG_2011.jpeg") no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 3rem 1rem;
-      background: #2a2a2a;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      color: #fff;
+      padding-top: 60px;
+      /* pushes content below navbar */
     }
 
-    header img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 1rem;
-      border: 3px solid #444;
+    .header-overlay {
+      background: rgba(0, 0, 0, 0.5);
+      /* dark overlay for readability */
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 700px;
     }
 
     header h1 {
-      margin: 0.5rem 0;
-      font-size: 2rem;
-      color: #ffffff;
+      font-size: 3rem;
+      margin-bottom: 1rem;
     }
 
     header p {
-      max-width: 600px;
-      margin: 0 auto;
-      font-size: 1rem;
-      color: #ccc;
+      font-size: 1.2rem;
+      color: #e0e0e0;
     }
+
+
 
     section {
       padding: 3rem 1rem;
@@ -87,7 +100,8 @@
       color: #ffffff;
     }
 
-    .projects, .cv {
+    .projects,
+    .cv {
       display: grid;
       gap: 1.5rem;
     }
@@ -96,13 +110,13 @@
       background: #2e2e2e;
       padding: 1.5rem;
       border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .project-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
     }
 
     .project-card h3 {
@@ -133,6 +147,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- NAVBAR -->
@@ -146,14 +161,16 @@
 
   <!-- HEADER / ABOUT -->
   <header id="about">
-    <img src="assets/images/IMG_2011.jpeg" alt="Miranda Baltaxe">
-    <h1>Miranda Baltaxe</h1>
-    <p>
-      Welcome! I’m a hardware engineer and sports tech enthusiast. 
-      I work on Misty One, a set of skis that collect pressure and motion data for R&D at Carv.  
-      This site showcases my projects and CV.
-    </p>
+    <div class="header-overlay">
+      <h1>Miranda Baltaxe</h1>
+      <p>
+        Welcome! I’m a hardware engineer and sports tech enthusiast.
+        I work on wearable devices, embedded systems, and CAD design.
+        This site showcases my projects and CV.
+      </p>
+    </div>
   </header>
+
 
   <!-- PROJECTS -->
   <section id="projects">
@@ -189,4 +206,5 @@
   </footer>
 
 </body>
+
 </html>
