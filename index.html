@@ -6,16 +6,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My GitHub Site</title>
   <style>
+    /* --------- THEME PALETTE (dark + lilac) --------- */
+    :root {
+      /* Core dark surface */
+      --bg: #141217;
+      /* near-black with a hint of plum */
+      --bg-elev-1: #1b1920;
+      /* cards / sections */
+      --bg-elev-2: #23212a;
+      /* navbar / footer */
+
+      /* Text */
+      --text: #efe9f2;
+      /* primary text */
+      --text-muted: #cfc6d8;
+      /* secondary text */
+
+      /* Lilac + complimentary set (you provided) */
+      --lilac: #bfa2c8;
+      --comp-1: #aca2c8;
+      /* cool lilac/blue */
+      --comp-2: #c8a2be;
+      /* rosy lilac */
+      --mono-1: #b582b5;
+      --mono-2: #bf92bf;
+      --mono-3: #c8a2c8;
+      --mono-4: #d1b2d1;
+      --mono-5: #dbc2db;
+      --mono-6: #e4d2e4;
+
+      /* Tetradic accents from list */
+      --tetra-1: #a2a2c8;
+      /* periwinkle */
+      --tetra-2: #c8a2c8;
+      /* overlaps mono-3 */
+      --tetra-3: #c8c8a2;
+      /* soft olive */
+      --tetra-4: #a2c8a2;
+      /* sage/green */
+
+      /* Interactive colors */
+      --link: var(--lilac);
+      --link-hover: #d8c2df;
+      --border: #302a37;
+      --shadow: rgba(0, 0, 0, 0.6);
+      --focus: #e4d2e4;
+    }
+
+    /* Global reset / base */
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #1e1e1e;
-      /* Dark gray */
-      color: #eaeaea;
-      /* Light text */
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
       scroll-behavior: smooth;
-      /* enables smooth scroll */
     }
 
     /* --- NAVBAR --- */
@@ -24,31 +74,70 @@
       top: 0;
       left: 0;
       width: 100%;
-      background: #111;
-      /* solid dark bar */
+      background: var(--bg-elev-2);
       padding: 0.8rem 1rem;
       z-index: 1000;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* keeps your links centered */
+      position: relative;
+      /* for right-side icons */
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      justify-content: center;
       gap: 2rem;
       margin: 0;
       padding: 0;
     }
 
     nav a {
-      color: #eaeaea;
+      color: var(--text);
       text-decoration: none;
       font-weight: bold;
       transition: color 0.2s;
     }
 
     nav a:hover {
-      color: #66b2ff;
+      color: var(--link);
+    }
+
+    /* Right-aligned social icons in nav */
+    .social {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .icon-link {
+      color: var(--comp-1);
+      display: inline-flex;
+      padding: 6px;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .icon-link:hover {
+      color: var(--link);
+      background: rgba(191, 162, 200, 0.12);
+      /* lilac tint */
+      transform: translateY(-1px);
+    }
+
+    .icon-link:focus {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
     }
 
     /* --- HEADER / HERO IMAGE --- */
@@ -56,22 +145,22 @@
       position: relative;
       height: 100vh;
       background: url("assets/images/IMG_2011.jpeg") no-repeat center 5%/cover;
-      /* ^^^ try adjusting 20% (higher number moves the image down) */
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       color: #fff;
       padding-top: 60px;
-      /* makes sure content clears the navbar */
+      /* clear navbar */
     }
 
     .header-overlay {
-      background: rgba(0, 0, 0, 0.5);
-      /* dark overlay for readability */
+      background: linear-gradient(180deg, rgba(20, 18, 23, 0.65), rgba(20, 18, 23, 0.85));
+      border: 1px solid var(--border);
       padding: 2rem;
-      border-radius: 10px;
+      border-radius: 12px;
       max-width: 700px;
+      backdrop-filter: blur(2px);
     }
 
     header h1 {
@@ -81,10 +170,17 @@
 
     header p {
       font-size: 1.2rem;
-      color: #e0e0e0;
+      color: var(--text-muted);
     }
 
+    header a {
+      color: var(--link);
+    }
 
+    header a:hover {
+      color: var(--link-hover);
+      text-decoration: underline;
+    }
 
     section {
       padding: 3rem 1rem;
@@ -95,9 +191,9 @@
     section h2 {
       margin-bottom: 1.5rem;
       font-size: 1.75rem;
-      border-bottom: 2px solid #444;
+      border-bottom: 2px solid var(--border);
       padding-bottom: 0.5rem;
-      color: #ffffff;
+      color: #fff;
     }
 
     .projects,
@@ -107,64 +203,91 @@
     }
 
     .project-card {
-      background: #2e2e2e;
+      background: var(--bg-elev-1);
+      border: 1px solid var(--border);
       padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-      transition: transform 0.2s, box-shadow 0.2s;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     }
 
     .project-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 6px 16px var(--shadow);
+      border-color: var(--mono-2);
     }
 
     .project-card h3 {
       margin-top: 0;
-      color: #ffffff;
+      color: #fff;
     }
 
     .project-card p {
-      color: #bbb;
+      color: var(--text-muted);
     }
 
-    /* --- NEWS --- */
+    a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--link-hover);
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      background: var(--bg-elev-2);
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+
+    /* --- NEWS (existing from earlier plan) --- */
     .news-list {
       display: grid;
       gap: 1.5rem;
     }
 
     .news-card {
-      background: #2e2e2e;
-      border-radius: 10px;
+      background: var(--bg-elev-1);
+      border: 1px solid var(--border);
+      border-radius: 12px;
       overflow: hidden;
       display: flex;
       flex-direction: row;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 6px var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     }
 
     .news-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 6px 16px var(--shadow);
+      border-color: var(--mono-2);
     }
 
+    /* Responsive thumbnail: fills its box, keeps ratio */
     .news-thumb {
-      width: 180px;
-      /* fixed width */
-      height: 120px;
-      /* fixed height */
+      width: 100%;
+      aspect-ratio: 16 / 9;
       object-fit: cover;
-      /* makes the image cover the box */
       object-position: center;
-      /* centers the image inside the box */
       display: block;
-      /* removes inline spacing issues */
+    }
+
+    /* When your card is side-by-side, fix a max width for the thumb column */
+    .news-link {
+      flex: 0 0 320px;
+      max-width: 420px;
     }
 
     .news-content {
       padding: 1rem;
       flex: 1;
+      min-width: 0;
     }
 
     .news-content h3 {
@@ -173,43 +296,37 @@
     }
 
     .news-content h3 a {
-      color: #66b2ff;
-      text-decoration: none;
+      color: var(--link);
     }
 
     .news-content h3 a:hover {
-      text-decoration: underline;
+      color: var(--link-hover);
     }
 
     .news-preview {
-      color: #bbb;
+      color: var(--text-muted);
       margin: 0.5rem 0;
     }
 
     .news-context {
       font-style: italic;
-      color: #ccc;
+      color: var(--mono-5);
       margin: 0.5rem 0 0;
     }
 
-    a {
-      color: #66b2ff;
-      text-decoration: none;
-    }
+    /* Stack cards on small screens */
+    @media (max-width: 720px) {
+      .news-card {
+        flex-direction: column;
+      }
 
-    a:hover {
-      text-decoration: underline;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #888;
-      background: #2a2a2a;
-      margin-top: 2rem;
+      .news-link {
+        flex-basis: auto;
+        max-width: none;
+      }
     }
   </style>
+
 </head>
 
 <body>
@@ -288,9 +405,11 @@
           <img src="assets/images/IMG_8163.jpeg" alt="Article thumbnail" class="news-thumb">
         </a>
         <div class="news-content">
-          <h3><a href="https://eecs.engin.umich.edu/stories/2024-undergraduate-student-awards" target="_blank">2024 Undergraduate Student Awards</a></h3>
+          <h3><a href="https://eecs.engin.umich.edu/stories/2024-undergraduate-student-awards" target="_blank">2024
+              Undergraduate Student Awards</a></h3>
           <p class="news-preview">
-            These students are recognized for their outstanding scholarship, research, service, leadership, and entrepreneurship.
+            These students are recognized for their outstanding scholarship, research, service, leadership, and
+            entrepreneurship.
           </p>
           <p class="news-context">
             I was awarded Commercialization/Entrepreneurship Award by the University of Michigan's ECE Deptartment for
