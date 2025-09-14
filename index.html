@@ -150,10 +150,18 @@
     }
 
     .news-thumb {
-      width: 180px;
-      height: 120px;
+      width: 100%;
+      /* fill the container width */
+      aspect-ratio: 16 / 9;
+      /* keeps the thumbnail a rectangle */
       object-fit: cover;
-      flex-shrink: 0;
+      /* makes the image cover the box */
+      object-position: center;
+      /* keeps the subject centered */
+      border-radius: 8px;
+      /* optional, matches your card style */
+      display: block;
+      /* avoids weird inline spacing */
     }
 
     .news-content {
@@ -256,19 +264,21 @@
 
       <!-- News Item -->
       <div class="news-card">
-        <a href="https://greenway.org/stories/meet-east-coast-greenway-thru-rider-miranda-baltaxe" target="_blank" class="news-link">
+        <a href="https://greenway.org/stories/meet-east-coast-greenway-thru-rider-miranda-baltaxe" target="_blank"
+          class="news-link">
           <img src="assets/images/IMG_3492.jpeg" alt="Article thumbnail" class="news-thumb">
         </a>
         <div class="news-content">
-          <h3><a href="https://greenway.org/stories/meet-east-coast-greenway-thru-rider-miranda-baltaxe" target="_blank">Meet Greenway through-rider Miranda Baltaxe</a></h3>
+          <h3><a href="https://greenway.org/stories/meet-east-coast-greenway-thru-rider-miranda-baltaxe"
+              target="_blank">Meet Greenway through-rider Miranda Baltaxe</a></h3>
           <p class="news-preview">
-            We're thrilled to celebrate Miranda Baltaxe's incredible accomplishment as 
+            We're thrilled to celebrate Miranda Baltaxe's incredible accomplishment as
             she completed the journey of a lifetime, riding the East Coast Greenway route ...
           </p>
           <p class="news-context">
-            <strong>My note:</strong> In Fall of 2024, 
+            In Fall of 2024,
             I rode my bike from Maine to Florida solo over the course of 10 weeks on the East Coast Greenway!
-            They interviewed me about my trip when I passed through their HQ in North Carolina 
+            They interviewed me about my trip when I passed through their HQ in North Carolina
           </p>
         </div>
       </div>
