@@ -1707,8 +1707,14 @@ My scope covers the full stack: writing FreeRTOS-based firmware and custom drive
         title: "Tactile: Virtual Study Tool for the Blind",
         year: "2023 – 2024",
         tags: ["ATmega2560", "PCB", "Embedded C", "Haptics", "EECS 473 Capstone"],
-        photo: null,
-        photoAlt: "Tactile device at Design Expo",
+        media: [
+          { src: "assets/images/tactile/one.png", alt: "users testing out Tactile", type: "image" },
+          { src: "assets/images/tactile/five.png", alt: "Tactile prototype on demo day", type: "image" },
+          { src: "assets/images/tactile/two.png", alt: "software state diagram", type: "image" },
+          { src: "assets/images/tactile/three.png", alt: "component block diagram", type: "image" },
+          { src: "assets/images/tactile/four.png", alt: "Demo rendering", type: "image" },
+
+        ],
         desc: "A standalone flashcard and note-taking device for visually impaired students, built around NewHaptics' multi-line refreshable braille display. Top-scoring EECS 473 capstone; fully functional on demo day.",
         detail: `The device lets visually impaired students load flashcard decks, flip through cards, write notes using an external keyboard, and save files — all without a computer. An LCD previews the braille content for sighted observers.
 
@@ -1848,6 +1854,8 @@ The project was conducted in collaboration with the EMBiR Lab (Evolution and Mot
     const overlay = document.getElementById('modal-overlay');
     const modalLink = document.getElementById('modal-link');
 
+    const expandIcon = `<svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M8 1h4v4M5 12H1V8M12 8v4H8M1 5V1h4"/></svg>`;
+
     function buildSlideshow(top, media) {
       if (media.length === 0) {
         top.innerHTML = `<div class="modal-top-bar"></div>`;
@@ -1855,15 +1863,20 @@ The project was conducted in collaboration with the EMBiR Lab (Evolution and Mot
       }
       if (media.length === 1) {
         const m = media[0];
-        top.innerHTML = m.type === 'video'
-          ? `<video class="modal-img" src="${m.src}" controls muted playsinline></video>`
-          : `<img class="modal-img" src="${m.src}" alt="${m.alt}">`;
+        top.innerHTML = `<div class="modal-media-wrap">
+          ${m.type === 'video'
+            ? `<video class="modal-img" src="${m.src}" controls muted playsinline></video>`
+            : `<img class="modal-img" src="${m.src}" alt="${m.alt}">`}
+          <button class="slideshow-expand" title="View full size">${expandIcon}</button>
+        </div>`;
+        top.querySelector('.slideshow-expand').addEventListener('click', () => openLightbox(m.src, m.type, m.alt));
         return;
       }
-      const slides = media.map(m => `<div class="slideshow-slide">${m.type === 'video'
+      const slides = media.map(m => `<div class="slideshow-slide">${
+        m.type === 'video'
           ? `<video src="${m.src}" controls muted playsinline></video>`
           : `<img src="${m.src}" alt="${m.alt}">`
-        }</div>`).join('');
+      }</div>`).join('');
       const dots = media.map((_, i) =>
         `<div class="slideshow-dot${i === 0 ? ' active' : ''}" data-i="${i}"></div>`
       ).join('');
@@ -1872,6 +1885,7 @@ The project was conducted in collaboration with the EMBiR Lab (Evolution and Mot
         <button class="slideshow-btn prev">&#8249;</button>
         <button class="slideshow-btn next">&#8250;</button>
         <div class="slideshow-dots">${dots}</div>
+        <button class="slideshow-expand" title="View full size">${expandIcon}</button>
       </div>`;
       let current = 0;
       const track = top.querySelector('.slideshow-track');
@@ -1884,7 +1898,34 @@ The project was conducted in collaboration with the EMBiR Lab (Evolution and Mot
       top.querySelector('.prev').addEventListener('click', () => goTo(current - 1));
       top.querySelector('.next').addEventListener('click', () => goTo(current + 1));
       dotEls.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.i)));
+      top.querySelector('.slideshow-expand').addEventListener('click', () => {
+        const m = media[current];
+        openLightbox(m.src, m.type, m.alt);
+      });
     }
+
+    /* ── LIGHTBOX ── */
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox';
+    lightbox.innerHTML = `<button class="lightbox-close" title="Close">&#x2715;</button><div class="lightbox-content"></div>`;
+    document.body.appendChild(lightbox);
+
+    function openLightbox(src, type, alt) {
+      const content = lightbox.querySelector('.lightbox-content');
+      content.innerHTML = type === 'video'
+        ? `<video src="${src}" controls autoplay muted playsinline></video>`
+        : `<img src="${src}" alt="${alt || ''}">`;
+      lightbox.classList.add('open');
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.querySelectorAll('video').forEach(v => v.pause());
+    }
+
+    lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
     function closeModal() {
       overlay.classList.remove('open');
