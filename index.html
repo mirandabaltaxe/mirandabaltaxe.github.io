@@ -1586,19 +1586,14 @@
         title: "Powderhound — R&D Motion Tracker",
         year: "2025 — Present",
         tags: ["ESP32-S3", "FreeRTOS", "PCB", "IMU", "Vibrometer", "Sports Tech", "Carv"],
-        photo: "assets/images/powderhound.jpg",
-        photoAlt: "Powderhound tracker PCB mounted on a HEAD ski boot",
+        //photo: "assets/images/powderhound.jpg",
+        photo: null,
+        photoAlt: "Powderhound tracker PCB mounted on a HEAD ski boot - TBD pending approval to post from Carv",
         desc: "A high-frequency boot-mounted motion tracker for Carv's data science team — collecting motion data 24–50× faster than Carv 2, with multiple IMU orientations and a vibrometer, to tune motion fusion algorithms.",
         detail: `Why: Carv's existing sensors collect motion data at a rate that limits how precisely the data science team can tune motion fusion algorithms. Powderhound fixes that.
 
 What: A new "fat-tracker" that clips directly to a ski boot — a cross between Misty (our instrumented ski system) and the Carv 2 production sensor. It captures motion data 24–50× faster than Carv 2, with none of the setup overhead of the Misty skis. Key hardware on the custom PCB:
-  • ESP32-S3-WROOM-1 (main MCU + wireless)
-  • THREE motion sensors at different orientations
-  • Vibrometer — for a wider array of signal types and ground-truth validation data
-  • On-board USB-C charging
-  • SD card with 50× the data collection and storage capacity of Carv 2
-
-The additional sensor variety (different IMU types, different axes, vibrometer) means the data science team can validate algorithms against a much richer dataset than was previously possible.
+  • DETAILS ARE PENDING APPROVAL TO POST FROM CARV, BUT I PROMISE IT'S COOL :)
 
 Status: currently fine-tuning prototypes; targeting summer ski testing for deployment.`,
         link: "https://getcarv.com"
@@ -1610,7 +1605,7 @@ Status: currently fine-tuning prototypes; targeting summer ski testing for deplo
         media: [
           { src: "assets/images/misty/misty_lucy.jpg", alt: "Misty One on the Snow", type: "image" },
           { src: "assets/images/misty/misty_rack.jpg", alt: "Misty on a Rack", type: "image" },
-          { src: "assets/images/misty/misty_fpc.jpg", alt: "Misty's Pressure Sensor Internals'", type: "image" },
+          //{ src: "assets/images/misty/misty_fpc.jpg", alt: "Misty's Pressure Sensor Internals'", type: "image" },
           { src: "assets/images/misty/misty_snow.jpg", alt: "Misty on the Snow", type: "image" },
           { src: "assets/images/misty/miranda_misty.jpg", alt: "Me holding Misty One", type: "image" },
           { src: "assets/images/misty/misty_lights.MOV", alt: "Misty's New App", type: "video" },
