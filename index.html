@@ -1336,7 +1336,7 @@
   <div class="section-wrap alt" id="projects">
     <div class="section-header">
       <span class="section-num">01 //</span>
-      <h2 class="section-title">Engineering Projects</h2>
+      <h2 class="section-title">Selected Projects</h2>
       <div class="section-line"></div>
     </div>
     <div class="projects-grid" id="projects-grid"></div>
@@ -1641,6 +1641,19 @@ My scope covers the full stack: writing FreeRTOS-based firmware and custom drive
         link: "https://getcarv.com"
       },
       {
+        title: "Coulomb Counter — Battery Test Device",
+        year: "2025",
+        company: "carv",
+        tags: ["C/C++", "Firmware", "Battery", "Coulomb Counting", "Hardware", "Carv"],
+        photo: null,
+        photoAlt: "Coulomb counter test device — photo coming soon",
+        desc: "Custom test device and firmware for coulomb counting to characterise battery performance and improve state-of-charge estimation in Carv's production devices.",
+        detail: `Carv's production sensors needed more accurate state-of-charge estimation. This standalone test device measures accumulated charge in and out of the battery over time, producing real-world capacity and efficiency data to validate and tune the SoC algorithm.
+
+What I built: a dedicated hardware test device with embedded firmware in C, integrating a coulomb counter IC over I²C and logging data for offline analysis. The results fed directly into improvements to Carv's production battery management.`,
+        link: "https://getcarv.com"
+      },
+      {
         title: "fMRI-Compatible Refreshable Braille Display",
         year: "2023 – 2024",
         company: "newhaptics",
@@ -1655,6 +1668,7 @@ My role at NewHaptics: prototype assembly including PCB population and manufactu
       {
         title: "Tactile: Virtual Study Tool for the Blind",
         year: "2023 – 2024",
+        company: "michigan",
         tags: ["ATmega2560", "PCB", "Embedded C", "Haptics", "EECS 473 Capstone"],
         media: [
           { src: "assets/images/tactile/one.png", alt: "users testing out Tactile", type: "image" },
@@ -1677,6 +1691,7 @@ Stack: ATmega2560, SPI SD card reader (FAT32), PS/2 keyboard, UART to braille di
       {
         title: "HASEL Actuators as a Soft Robotic Gripper",
         year: "2020 – 2022",
+        company: "michigan",
         tags: ["Soft Robotics", "HASEL", "SolidWorks", "Research", "ROAHM Lab", "EMBiR Lab"],
         photo: "assets/images/poster.jpg",
         photoAlt: "HASEL gripper holding objects",
@@ -1700,6 +1715,7 @@ The project was conducted in collaboration with the EMBiR Lab (Evolution and Mot
       {
         title: "ACL Imaging Rig",
         year: "2023",
+        company: "michigan",
         tags: ["SolidWorks", "Form 3 SLA", "Mechanical Design", "Research"],
         photo: null,
         photoAlt: "ACL imaging rig",
@@ -1748,7 +1764,7 @@ Process: iterative CAD design in SolidWorks, fabrication on the Form 3 SLA print
       card.style.transitionDelay = `${i * 0.07}s`;
       const media = getMedia(p);
       const first = media[0];
-      const logoFmt = { carv: 'png', newhaptics: 'png' };
+      const logoFmt = { carv: 'png', newhaptics: 'png', michigan: 'png' };
       const badgeHTML = p.company
         ? `<div class="card-company-badge card-company-badge--${p.company}"><img src="assets/logos/${p.company}.${logoFmt[p.company] || 'svg'}" alt="${p.company}" onerror="this.parentElement.style.display='none'"></div>`
         : '';
