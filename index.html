@@ -2,327 +2,1861 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My GitHub Site</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miranda Baltaxe — Hardware Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Space+Mono:ital@0;1&display=swap"
+    rel="stylesheet" />
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #1e1e1e;
-      /* Dark gray */
-      color: #eaeaea;
-      /* Light text */
-      line-height: 1.6;
-      scroll-behavior: smooth;
-      /* enables smooth scroll */
+    :root {
+      --cream: #F5F0E8;
+      --warm: #FDFAF4;
+      --teal: #1A4A47;
+      --teal-mid: #2E6E69;
+      --teal-lt: #A8C5C2;
+      --gold: #C9973A;
+      --blush: #E8C4B8;
+      --blush-lt: #F5DDD5;
+      --ink: #1C1C1A;
+      --ink-50: rgba(28, 28, 26, 0.5);
+      --ink-70: rgba(28, 28, 26, 0.7);
     }
 
-    /* --- NAVBAR --- */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: #111;
-      /* solid dark bar */
-      padding: 0.8rem 1rem;
-      z-index: 1000;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    nav a {
-      color: #eaeaea;
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Instrument Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--blush);
+      color: var(--ink);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3rem;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    nav.scrolled {
+      background: rgba(245, 240, 232, 0.93);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--teal-lt);
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: #fff;
+      letter-spacing: -0.02em;
       text-decoration: none;
-      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav.scrolled .nav-logo {
+      color: var(--teal);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
       transition: color 0.2s;
+      position: relative;
     }
 
-    nav a:hover {
-      color: #66b2ff;
+    nav.scrolled .nav-links a {
+      color: var(--ink);
     }
 
-    /* --- HEADER / HERO IMAGE --- */
-    header {
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s;
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* ── HERO ── */
+    #hero {
       position: relative;
       height: 100vh;
-      background: url("assets/images/IMG_2011.jpeg") no-repeat center 5%/cover;
-      /* ^^^ try adjusting 20% (higher number moves the image down) */
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('hero.jpg');
+      background-size: cover;
+      background-position: center 0%;
+      background-repeat: no-repeat;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(26, 74, 71, 0.1) 0%, rgba(26, 74, 71, 0.05) 35%, rgba(28, 28, 26, 0.7) 80%, rgba(28, 28, 26, 0.9) 100%);
+    }
+
+    .hero-bg.no-photo {
+      background: linear-gradient(135deg, var(--teal) 0%, #0d2e2c 100%);
+    }
+
+    .hero-bg.no-photo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 0 4rem 4.5rem;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.63rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--blush-lt);
+      margin-bottom: 1rem;
+      animation: fadeUp 0.6s ease both;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    .hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3.2rem, 7vw, 6rem);
+      color: #fff;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    .hero-name em {
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    .hero-bio {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.82);
+      max-width: 580px;
+      line-height: 1.7;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .hero-bio a {
+      color: var(--blush);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(232, 196, 184, 0.4);
+    }
+
+    .hero-bio a:hover {
+      border-color: var(--blush);
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .hero-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      padding: 0.28rem 0.75rem;
+      border: 1px solid rgba(168, 197, 194, 0.5);
+      border-radius: 100px;
+      color: rgba(168, 197, 194, 0.9);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      right: 3rem;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.38);
+      animation: fadeUp 1s 0.6s ease both;
+    }
+
+    .scroll-hint svg {
+      animation: bounce 1.8s infinite;
+    }
+
+    /* ── LAYOUT HELPERS ── */
+    .section-wrap {
+      padding: 6rem 4rem;
+    }
+
+    .section-wrap.mid {
+      background: var(--warm);
+    }
+
+    .section-wrap.alt {
+      background: var(--cream);
+    }
+
+    .section-wrap.dark {
+      background: var(--teal);
+      color: var(--cream);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      letter-spacing: -0.025em;
+      color: var(--teal);
+    }
+
+    .section-wrap.dark .section-title {
+      color: var(--cream);
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--teal-lt), transparent);
+    }
+
+    .section-wrap.dark .section-line {
+      background: linear-gradient(to right, rgba(168, 197, 194, 0.35), transparent);
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .portrait-outer {
+      position: relative;
+    }
+
+    .portrait-frame {
+      width: 100%;
+
+      aspect-ratio: 3/4;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .portrait-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 90%;
+      /* moves image down */
+      transform: scale(1.2);
+      /* zoom in */
+    }
+
+    .portrait-ph {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      background: linear-gradient(135deg, var(--teal), var(--teal-mid));
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    .portrait-ph span {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      color: rgba(168, 197, 194, 0.6);
       text-align: center;
-      color: #fff;
-      padding-top: 60px;
-      /* makes sure content clears the navbar */
     }
 
-    .header-overlay {
-      background: rgba(0, 0, 0, 0.5);
-      /* dark overlay for readability */
-      padding: 2rem;
-      border-radius: 10px;
-      max-width: 700px;
+    .portrait-accent {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      border: 2px solid var(--teal-lt);
+      border-radius: 4px;
+      z-index: -1;
     }
 
-    header h1 {
-      font-size: 3rem;
+    .about-text .eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
       margin-bottom: 1rem;
+      display: block;
     }
 
-    header p {
-      font-size: 1.2rem;
-      color: #e0e0e0;
+    .about-text h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.1rem;
+      color: var(--teal);
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+      line-height: 1.15;
     }
 
-
-
-    section {
-      padding: 3rem 1rem;
-      max-width: 900px;
-      margin: auto;
+    .about-text p {
+      font-size: 0.96rem;
+      margin-bottom: 0.85rem;
+      color: var(--ink-70);
     }
 
-    section h2 {
-      margin-bottom: 1.5rem;
-      font-size: 1.75rem;
-      border-bottom: 2px solid #444;
-      padding-bottom: 0.5rem;
-      color: #ffffff;
+    .about-text a {
+      color: var(--teal);
+      text-decoration: none;
+      border-bottom: 1px solid var(--teal-lt);
+      transition: border-color 0.2s;
     }
 
-    .projects,
-    .cv {
+    .about-text a:hover {
+      border-color: var(--teal);
+    }
+
+    .about-stats {
       display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+      border-top: 1px solid var(--teal-lt);
+      padding-top: 1.75rem;
+    }
+
+    .about-stats a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .about-stats a:hover .stat-num {
+      opacity: 0.75;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.9rem;
+      color: var(--teal);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-50);
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 1.5rem;
     }
 
     .project-card {
-      background: #2e2e2e;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-      transition: transform 0.2s, box-shadow 0.2s;
+      background: var(--warm);
+      border: 1px solid var(--teal-lt);
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      display: flex;
+      flex-direction: column;
     }
 
     .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+      transform: translateY(-5px);
+      box-shadow: 0 18px 44px -10px rgba(26, 74, 71, 0.2);
+      border-color: var(--teal);
     }
 
-    .project-card h3 {
-      margin-top: 0;
-      color: #ffffff;
-    }
-
-    .project-card p {
-      color: #bbb;
-    }
-
-    /* --- NEWS --- */
-    .news-list {
-      display: grid;
-      gap: 1.5rem;
-    }
-
-    .news-card {
-      background: #2e2e2e;
-      border-radius: 10px;
+    .card-photo {
+      width: 100%;
+      height: 200px;
       overflow: hidden;
-      display: flex;
-      flex-direction: row;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
     }
 
-    .news-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-    }
-
-    .news-thumb {
-      width: 180px;
-      /* fixed width */
-      height: 120px;
-      /* fixed height */
+    .card-photo img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      /* makes the image cover the box */
       object-position: center;
-      /* centers the image inside the box */
       display: block;
-      /* removes inline spacing issues */
+      transition: transform 0.4s ease;
     }
 
-    .news-content {
-      padding: 1rem;
+    .project-card:hover .card-photo img {
+      transform: scale(1.05);
+    }
+
+    .card-photo.empty {
+      background: linear-gradient(135deg, var(--cream) 0%, var(--blush-lt) 100%);
+      border-bottom: 1px solid var(--teal-lt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .card-photo.empty .ph-icon {
+      font-size: 1.4rem;
+      opacity: 0.5;
+    }
+
+    .card-photo.empty .ph-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal-lt);
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .card-body {
+      padding: 1.5rem;
       flex: 1;
     }
 
-    .news-content h3 {
-      margin: 0 0 0.5rem;
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .card-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 0.08em;
+      padding: 0.18rem 0.55rem;
+      border-radius: 100px;
+      background: var(--blush-lt);
+      color: var(--teal);
+    }
+
+    .card-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+      color: var(--teal);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--ink-70);
+      line-height: 1.6;
+    }
+
+    .card-footer {
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--teal-lt);
+    }
+
+    .card-year {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--ink-50);
+      letter-spacing: 0.1em;
+    }
+
+    .card-arrow {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .project-card:hover .card-arrow {
+      background: var(--gold);
+      transform: translate(2px, -2px);
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: rgba(28, 28, 26, 0.65);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--warm);
+      border-radius: 8px;
+      max-width: 660px;
+      width: 92%;
+      max-height: 85vh;
+      overflow-y: auto;
+      transform: translateY(18px);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .modal-overlay.open .modal {
+      transform: none;
+    }
+
+    .modal-img {
+      width: 100%;
+      height: auto;
+      max-height: 65vh;
+      object-fit: contain;
+      display: block;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .modal-top-bar {
+      height: 6px;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+      border-radius: 8px 8px 0 0;
+    }
+
+    /* ── SLIDESHOW ── */
+    .modal-slideshow {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .slideshow-slide {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+
+    .slideshow-slide.active {
+      position: relative;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .slideshow-slide img,
+    .slideshow-slide video {
+      width: 100%;
+      height: auto;
+      max-height: 65vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .slideshow-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(28, 28, 26, 0.55);
       color: #fff;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      transition: background 0.2s;
     }
 
-    .news-content h3 a {
-      color: #66b2ff;
+    .slideshow-btn:hover {
+      background: rgba(28, 28, 26, 0.85);
+    }
+
+    .slideshow-btn.prev {
+      left: 10px;
+    }
+
+    .slideshow-btn.next {
+      right: 10px;
+    }
+
+    .slideshow-dots {
+      position: absolute;
+      bottom: 9px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 2;
+    }
+
+    .slideshow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.45);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .slideshow-dot.active {
+      background: #fff;
+    }
+
+    .modal-media-wrap {
+      position: relative;
+      border-radius: 8px 8px 0 0;
+      overflow: hidden;
+    }
+
+    .modal-embed {
+      width: 100%;
+      height: 58vh;
+      border: none;
+      display: block;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .modal-body-wrap {
+      padding: 2rem 2.25rem 2.5rem;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(0, 0, 0, 0.35);
+      border: none;
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+      z-index: 1;
+    }
+
+    .modal-close:hover {
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .modal-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.56rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 100px;
+      background: var(--blush-lt);
+      color: var(--teal);
+    }
+
+    .modal-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.7rem;
+      color: var(--teal);
+      margin-bottom: 0.3rem;
+    }
+
+    .modal-year {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .modal-desc {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: var(--ink);
+      white-space: pre-line;
+    }
+
+    .modal-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1.5rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      border-bottom: 1px solid var(--gold);
       text-decoration: none;
+      padding-bottom: 2px;
+      transition: color 0.2s;
     }
 
-    .news-content h3 a:hover {
-      text-decoration: underline;
+    .modal-link:hover {
+      color: var(--gold);
     }
 
-    .news-preview {
-      color: #bbb;
-      margin: 0.5rem 0;
+    /* ── PRESS ── */
+    .press-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
     }
 
-    .news-context {
+    .press-card {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--teal-lt);
+      background: var(--cream);
+      transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .press-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px -8px rgba(26, 74, 71, 0.15);
+      border-color: var(--teal);
+    }
+
+    .press-thumb-wrap {
+      overflow: hidden;
+      height: 100%;
+      min-height: 150px;
+    }
+
+    .press-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.4s;
+    }
+
+    .press-card:hover .press-thumb {
+      transform: scale(1.06);
+    }
+
+    .press-thumb-ph {
+      width: 100%;
+      height: 100%;
+      min-height: 150px;
+      background: linear-gradient(135deg, var(--teal), var(--teal-mid));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .press-thumb-ph span {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.14em;
+      color: var(--teal-lt);
+    }
+
+    .press-info {
+      padding: 1.5rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .press-outlet {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .press-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--teal);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.7rem;
+      line-height: 1.3;
+    }
+
+    .press-preview {
+      font-size: 0.85rem;
+      color: var(--ink-70);
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+
+    .press-context {
+      font-size: 0.8rem;
       font-style: italic;
-      color: #ccc;
-      margin: 0.5rem 0 0;
+      color: var(--ink-50);
+      line-height: 1.55;
     }
 
-    a {
-      color: #66b2ff;
+    .press-context a {
+      color: var(--teal);
+      text-decoration: none;
+      border-bottom: 1px solid var(--teal-lt);
+    }
+
+    /* ── CV ── */
+    .cv-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 4rem;
+    }
+
+    .cv-block {
+      margin-bottom: 2.5rem;
+    }
+
+    .cv-block-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blush);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cv-block-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(168, 197, 194, 0.25);
+    }
+
+    .cv-entry {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(168, 197, 194, 0.15);
+    }
+
+    .cv-entry:last-child {
+      border-bottom: none;
+    }
+
+    .cv-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .cv-role {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem;
+      color: var(--warm);
+      line-height: 1.25;
+    }
+
+    .cv-period {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    .cv-place {
+      font-size: 0.82rem;
+      color: var(--blush-lt);
+      margin-bottom: 0.55rem;
+      font-style: italic;
+    }
+
+    .cv-bullets {
+      list-style: none;
+      padding: 0;
+    }
+
+    .cv-bullets li {
+      font-size: 0.83rem;
+      color: var(--teal-lt);
+      line-height: 1.6;
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 0.35rem;
+    }
+
+    .cv-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.7rem;
+      top: 0.1rem;
+    }
+
+    .cv-detail {
+      font-size: 0.84rem;
+      color: var(--teal-lt);
+      line-height: 1.65;
+    }
+
+    .cv-detail a {
+      color: var(--blush);
       text-decoration: none;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .cv-skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
 
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #888;
-      background: #2a2a2a;
+    .cv-skill {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.06em;
+      padding: 0.28rem 0.65rem;
+      border: 1px solid rgba(168, 197, 194, 0.4);
+      border-radius: 100px;
+      color: var(--teal-lt);
+    }
+
+    .cv-download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-top: 1.75rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: var(--gold);
+      padding: 0.8rem 1.75rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .cv-download-btn:hover {
+      background: var(--blush);
+      transform: translateY(-2px);
+    }
+
+    .cv-pdf-wrap {
       margin-top: 2rem;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid rgba(168, 197, 194, 0.3);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 2.75rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--cream);
+    }
+
+    .footer-copy {
+      font-size: 0.7rem;
+      color: var(--ink-50);
+      margin-top: 0.3rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: var(--teal-lt);
+      font-size: 0.78rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(5px)
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 820px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        gap: 1.2rem;
+      }
+
+      .section-wrap {
+        padding: 4rem 1.75rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .portrait-outer {
+        display: none;
+      }
+
+      .press-card {
+        grid-template-columns: 1fr;
+      }
+
+      .press-thumb-wrap,
+      .press-thumb-ph {
+        min-height: 180px;
+      }
+
+      .cv-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+
+      .hero-content {
+        padding: 0 1.75rem 3.5rem;
+      }
+
+      .scroll-hint {
+        display: none;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
-  <nav>
-    <ul>
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo">mbaltaxe</a>
+    <ul class="nav-links">
       <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
+      <li><a href="#projects">Work</a></li>
+      <li><a href="#press">Press</a></li>
       <li><a href="#cv">CV</a></li>
     </ul>
   </nav>
 
-  <!-- HEADER / ABOUT -->
-  <header id="about">
-    <div class="header-overlay">
-      <h1>Miranda Baltaxe</h1>
-      <p>
-        Welcome! I’m a hardware engineer and sports tech enthusiast.
-        I work on wearable devices, embedded systems, and PCB design. I'm currently
-        working on a pair of skis that collect pressure and motion data for R&D at
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg" id="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">// embedded & hardware engineer · sports tech · robotics · London, UK</p>
+      <h1 class="hero-name">Miranda<br><em>Baltaxe</em></h1>
+      <p class="hero-bio">
+        I build the embedded hardware tools that allow you to unlock the research, application or goal that
+        you can't quite reach
+        with off-the-shelf devices.
+        Right now, I'm building instrumented skis for sports science R&amp;D at
         <a href="https://getcarv.com" target="_blank">Carv</a>.
-        This site showcases my projects and CV.
       </p>
+      <div class="hero-tags">
+        <span class="hero-tag">Embedded Firmware (C/C++)</span>
+        <span class="hero-tag">PCB & FPC Design</span>
+        <span class="hero-tag">Sports Tech</span>
+        <span class="hero-tag">Robotics</span>
+        <span class="hero-tag">Michigan Engineering Grad</span>
+        <span class="hero-tag">Long-Distance Cycling</span>
+      </div>
     </div>
-  </header>
+    <div class="scroll-hint">
+      <svg width="12" height="18" viewBox="0 0 12 18" fill="none">
+        <path d="M6 1v14M1 11l5 5 5-5" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </svg>
+      Scroll
+    </div>
+  </section>
 
+  <!-- ABOUT -->
+  <div class="section-wrap mid" id="about">
+    <div class="about-grid">
+      <div class="portrait-outer reveal">
+        <div class="portrait-frame">
+          <img src="assets/images/DSCF7094.JPG" alt="Miranda Baltaxe"
+            onerror="this.parentElement.innerHTML='<div class=\'portrait-ph\'><span>// portrait photo<br>assets/images/</span></div>'">
+        </div>
+        <div class="portrait-accent"></div>
+      </div>
+      <div class="about-text">
+        <span class="eyebrow">// Hello</span>
+        <h2>Hardware Engineer,<br> PCB Tinkerer,<br> &amp; Maker.</h2>
+        <p>
+          Welcome! I'm Miranda, an embedded systems and hardware engineer specializing in wearable devices, PCB design,
+          and firmware. I'm drawn to work that sits at the edge of electronics and the physical world:
+          things you can collect data with, put through the ringer, and use over and over again.
+        </p>
+        <p>
+          Right now I'm at <a href="https://getcarv.com" target="_blank">Carv,</a> splitting my time between Innsbruck,
+          Austria, and London, UK,
+          building instrumented skis that track a skier's center of balance and motion in real time. I'm
+          writing FreeRTOS firmware from scratch, selecting IMUs and ADCs, designing PCBs and FPCs,
+          and testing the whole thing on the hill. Before that I was an engineering intern at
+          <a href="https://newhaptics.com" target="_blank">NewHaptics</a>, where I built an
+          fMRI-compatible refreshable braille display that was deployed to researchers at Johns Hopkins.
+        </p>
+        <p>
+          I graduated Summa Cum Laude with a degree in Computer Engineering from the
+          <a href="https://eecs.engin.umich.edu" target="_blank">University of Michigan</a>
+          in 2024, and then immediately decided to cycle 3,000 miles
+          from the Canadian border to Key West on the East Coast Greenway. Since then, on any given sunny day you'll
+          find me out on the road, or daydreaming about cycling. I also captained <a
+            href="https://flywheelultimate.notion.site" target="_blank">Michigan's Women's Ultimate Frisbee
+            team (Flywheel)</a>, which taught me everything I know about managing
+          moving pieces under pressure.
+        </p>
+        <p>
+          <span style="font-weight: bold;">I want to build the tools that allow you to unlock the research, application
+            or goal that you
+            can't quite reach with off-the-shelf devices. I love sports technology, specifically for female athletes. I
+            believe building
+            for women in sport and in life is one of the most important and underserved spaces in hardware right now.
+          </span>
+        </p>
+        <div class="about-stats">
+
+          <!-- LinkedIn -->
+          <div>
+            <a href="https://linkedin.com/in/miranda-baltaxe/" target="_blank" rel="noopener noreferrer">
+              <span class="stat-num">LinkedIn</span>
+              <span class="stat-label">Connect with me</span>
+            </a>
+          </div>
+
+          <!-- Instagram -->
+          <div>
+            <a href="https://instagram.com/mirandabbikes" target="_blank" rel="noopener noreferrer">
+              <span class="stat-num">Instagram</span>
+              <span class="stat-label">Follow my cycling</span>
+            </a>
+          </div>
+
+          <div>
+            <a href="https://github.com/mirandabaltaxe" target="_blank" rel="noopener noreferrer">
+              <span class="stat-num">GitHub</span>
+              <span class="stat-label">Projects</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- PROJECTS -->
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="project-card">
-        <h3>Project One</h3>
-        <p>Short description of what you built, tools used, or goals achieved.</p>
-        <a href="https://github.com/yourusername/project-one">View on GitHub</a>
-      </div>
-      <div class="project-card">
-        <h3>Project Two</h3>
-        <p>Another short description here.</p>
-        <a href="https://github.com/yourusername/project-two">View on GitHub</a>
-      </div>
+  <div class="section-wrap alt" id="projects">
+    <div class="section-header">
+      <span class="section-num">01 //</span>
+      <h2 class="section-title">Engineering Projects</h2>
+      <div class="section-line"></div>
     </div>
-  </section>
+    <div class="projects-grid" id="projects-grid"></div>
+  </div>
 
-  <!-- NEWS -->
-  <section id="news">
-    <h2>News</h2>
-    <div class="news-list">
-
-      <!-- News Item -->
-      <div class="news-card">
-        <a href="https://greenway.org/stories/meet-east-coast-greenway-thru-rider-miranda-baltaxe" target="_blank"
-          class="news-link">
-          <img src="assets/images/IMG_3492.jpeg" alt="Article thumbnail" class="news-thumb">
-        </a>
-        <div class="news-content">
-          <h3><a href="https://greenway.org/stories/meet-east-coast-greenway-thru-rider-miranda-baltaxe"
-              target="_blank">Meet Greenway through-rider Miranda Baltaxe</a></h3>
-          <p class="news-preview">
-            We're thrilled to celebrate Miranda Baltaxe's incredible accomplishment as
-            she completed the journey of a lifetime, riding the East Coast Greenway route ...
-          </p>
-          <p class="news-context">
-            In Fall of 2024,
-            I rode my bike from Maine to Florida solo over the course of 10 weeks on the East Coast Greenway!
-            They interviewed me about my trip when I passed through their HQ in North Carolina
-          </p>
-        </div>
-      </div>
-
-      <!-- News Item -->
-      <div class="news-card">
-        <a href="https://eecs.engin.umich.edu/stories/2024-undergraduate-student-awards" target="_blank"
-          class="news-link">
-          <img src="assets/images/IMG_8163.jpeg" alt="Article thumbnail" class="news-thumb">
-        </a>
-        <div class="news-content">
-          <h3><a href="https://eecs.engin.umich.edu/stories/2024-undergraduate-student-awards" target="_blank">2024 Undergraduate Student Awards</a></h3>
-          <p class="news-preview">
-            These students are recognized for their outstanding scholarship, research, service, leadership, and entrepreneurship.
-          </p>
-          <p class="news-context">
-            I was awarded Commercialization/Entrepreneurship Award by the University of Michigan's ECE Deptartment for
-            my work creating pneumatic refreshable braille displays with <a href="https://newhaptics.com"
-              target="_blank">NewHaptics</a>.
-          </p>
-        </div>
-      </div>
-
-      <!-- Add more .news-card blocks for additional articles -->
-
+  <!-- PRESS -->
+  <div class="section-wrap mid" id="press">
+    <div class="section-header">
+      <span class="section-num">02 //</span>
+      <h2 class="section-title">Press &amp; Features</h2>
+      <div class="section-line"></div>
     </div>
-  </section>
-
+    <div class="press-list" id="press-list"></div>
+  </div>
 
   <!-- CV -->
-  <section id="cv">
-    <h2>CV</h2>
-    <div class="cv">
-      <!-- <p>You can <a href="assets/resume/Resume - Miranda Baltaxe - Embedded Engineer - Sept. 2025.pdf" target="_blank">download my CV here</a>.</p>-->
-      <!-- Or embed your CV directly: -->
-      <iframe src="assets/resume/Resume - Miranda Baltaxe - Embedded Engineer - Sept. 2025.pdf" width="100%"
-        height="600px" style="border:none;"></iframe>
-
+  <div class="section-wrap dark" id="cv">
+    <div class="section-header">
+      <span class="section-num">03 //</span>
+      <h2 class="section-title">Curriculum Vitae</h2>
+      <div class="section-line"></div>
     </div>
-  </section>
+    <div class="cv-layout">
+
+      <!-- MAIN COLUMN -->
+      <div>
+        <div class="cv-block reveal">
+          <div class="cv-block-title">Relevant Experience</div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <span class="cv-role">Embedded &amp; Electronics Engineer</span>
+              <span class="cv-period">June 2025 — Present</span>
+            </div>
+            <p class="cv-place">Motion Metrics Ltd. (Carv) · London, UK &amp; Innsbruck, AT</p>
+            <ul class="cv-bullets">
+              <li>Developed custom firmware and drivers (in C/C++) enabling smart skis to track boot pressure
+                distribution and motion for balance metrics research supporting Carv's mobile app.</li>
+              <li>Designed schematics and laid out PCBs and FPCs in KiCad, integrating IMUs, microcontrollers, ADCs, and
+                peripheral components for prototype skis.</li>
+              <li>Built a test device and firmware for coulomb counting to characterize battery performance and provide
+                more accurate state-of-charge estimation in production devices.</li>
+              <li>Performed hardware bring-up, debugging, and verification using oscilloscopes, JTAG tools, and custom
+                test protocols, ensuring reliable operation across prototypes.</li>
+              <li>Investigated and repaired warranty-returned devices for battery failure and other issues, documenting
+                root causes and proposing hardware and firmware improvements to increase long-term product reliability.
+              </li>
+            </ul>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <span class="cv-role">Engineering Intern</span>
+              <span class="cv-period">June 2023 – Aug. 2024</span>
+            </div>
+            <p class="cv-place">NewHaptics · Ann Arbor, MI</p>
+            <ul class="cv-bullets">
+              <li>Prototyped a refreshable braille display with non-metal components for fMRI compatibility; deployed to
+                Johns Hopkins researchers</li>
+              <li>Developed MATLAB &amp; Python scripts for client research applications, enhancing usability and
+                adoption</li>
+              <li>Coordinated directly with clients to define requirements and delivered a packaged device under tight
+                deadlines</li>
+              <li>Incorporated blind user feedback into iterative design improvements and documented modifications for
+                future development</li>
+            </ul>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <span class="cv-role">Research Assistant</span>
+              <span class="cv-period">May – Aug. 2023</span>
+            </div>
+            <p class="cv-place">Arruda Lab · Ann Arbor, MI</p>
+            <ul class="cv-bullets">
+              <li>Designed and manufactured a modular imaging rig for ACL ligament research using SolidWorks and Form 3
+              </li>
+              <li>Presented design reviews to Mechanical Engineering dept. chair and implemented feedback into
+                prototypes</li>
+            </ul>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <span class="cv-role">Research Assistant</span>
+              <span class="cv-period">Aug. 2020 – Dec. 2022</span>
+            </div>
+            <p class="cv-place">ROAHM Lab · Ann Arbor, MI</p>
+            <ul class="cv-bullets">
+              <li>Researched hydraulically amplified self-healing electrostatic (HASEL) actuators for a soft robotic
+                hand.</li>
+              <li>Designed actuators with varying geometries, collected performance data, and developed MATLAB analysis
+                methods.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cv-block reveal">
+          <div class="cv-block-title">Education</div>
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <span class="cv-role">BSE in Computer Engineering (Embedded Systems Concentration)</span>
+              <span class="cv-period">Summa Cum Laude · 3.89 GPA</span>
+            </div>
+            <p class="cv-place">University of Michigan, Ann Arbor</p>
+          </div>
+        </div>
+
+        <div class="cv-block reveal">
+          <div class="cv-block-title">Additional Experience</div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <span class="cv-role">Bicycle Mechanic</span>
+              <span class="cv-period">Jan. – June 2025</span>
+            </div>
+            <p class="cv-place">Big Wheel Bikes · Arlington, VA</p>
+            <ul class="cv-bullets">
+              <li>Repaired hydraulic brakes, drivetrains, and electronic shifting systems on road, mountain, and
+                e-bikes.</li>
+              <li>Assembled and tuned custom bike builds for optimal rider performance.</li>
+            </ul>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <span class="cv-role">Manufacturing Mechanical Engineering Intern</span>
+              <span class="cv-period">May – July 2021</span>
+            </div>
+            <p class="cv-place">General Motors · Romulus, MI</p>
+            <ul class="cv-bullets">
+              <li>Supported troubleshooting and process improvement on the High Feature V6 engine block line.</li>
+              <li>Managed the engineering team for one week, coordinating mechanics and electricians to ensure on-spec
+                production.</li>
+            </ul>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <span class="cv-role">Leadership</span>
+            </div>
+            <ul class="cv-bullets">
+              <li><strong>Captain, University of Michigan Flywheel Ultimate (2019–2025):</strong> Managed operations for
+                50+ athletes and six coaches, including scheduling, training, recruiting, and executive board
+                leadership.</li>
+              <li><strong>Regional Director, USA Ultimate - Great Lakes (2022–2023):</strong> Directed logistics,
+                compliance, and competition management for DI/DIII sectional and regional tournaments.</li>
+            </ul>
+          </div>
+        </div>
+
+        <a href="assets/resume/resume.pdf" target="_blank" class="cv-download-btn">↓ Download Full CV</a>
+
+        <div class="cv-pdf-wrap reveal" style="margin-top:2.5rem">
+          <iframe src="assets/resume/resume.pdf" width="100%" height="620px"
+            style="border:none;display:block;"></iframe>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div>
+        <div class="cv-block reveal">
+          <div class="cv-block-title">Technical Skills</div>
+          <div class="cv-skill-list">
+            <span class="cv-skill">C / C++</span>
+            <span class="cv-skill">FreeRTOS</span>
+            <span class="cv-skill">PCB Layout</span>
+            <span class="cv-skill">FPC Design</span>
+            <span class="cv-skill">KiCad</span>
+            <span class="cv-skill">Embedded Firmware</span>
+            <span class="cv-skill">Schematic Design</span>
+            <span class="cv-skill">IMU Integration</span>
+            <span class="cv-skill">Battery / Coulomb Counting</span>
+            <span class="cv-skill">JTAG / Oscilloscope</span>
+            <span class="cv-skill">MATLAB</span>
+            <span class="cv-skill">Python</span>
+            <span class="cv-skill">SolidWorks</span>
+            <span class="cv-skill">Fusion 360</span>
+            <span class="cv-skill">OnShape</span>
+            <span class="cv-skill">SPI / UART / I²C</span>
+            <span class="cv-skill">Git</span>
+            <span class="cv-skill">Spanish (Advanced)</span>
+          </div>
+        </div>
+
+        <div class="cv-block reveal" style="margin-top:2rem">
+          <div class="cv-block-title">Awards &amp; Highlights</div>
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <span class="cv-role" style="font-size:0.92rem">ECE Commercialisation Award</span>
+              <span class="cv-period">2024</span>
+            </div>
+            <p class="cv-detail" style="margin-top:0.25rem">University of Michigan — for NewHaptics fMRI-compatible
+              braille display work.</p>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <span class="cv-role" style="font-size:0.92rem">Summa Cum Laude · 3.89 GPA</span>
+              <span class="cv-period">2024</span>
+            </div>
+            <p class="cv-detail" style="margin-top:0.25rem">University of Michigan, Computer Engineering.</p>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <span class="cv-role" style="font-size:0.92rem">East Coast Greenway Thru-Rider</span>
+              <span class="cv-period">2024</span>
+            </div>
+            <p class="cv-detail" style="margin-top:0.25rem">Canada border → Key West, Florida. 3,000 miles. 77 days.
+              Solo.</p>
+          </div>
+        </div>
+
+        <div class="cv-block reveal" style="margin-top:2rem">
+          <div class="cv-block-title">Contact</div>
+          <p class="cv-detail" style="line-height:2.1">
+            <a>
+              {firstname}.{lastname}@yahoo.com
+            </a><br>
+            <a href="https://www.linkedin.com/in/miranda-baltaxe/" target="_blank"
+              style="color:var(--blush)">linkedin.com/in/miranda-baltaxe</a><br>
+            <a href="https://github.com/mirandabaltaxe" target="_blank"
+              style="color:var(--blush)">github.com/mirandabaltaxe</a><br>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2025 Miranda Baltaxe | Built with GitHub Pages</p>
+    <div>
+      <div class="footer-logo">mbaltaxe</div>
+      <p class="footer-copy">© 2026 Miranda Baltaxe · All rights reserved</p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="https://www.linkedin.com/in/miranda-baltaxe/" target="_blank">LinkedIn</a></li>
+    </ul>
   </footer>
 
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modal-close">✕</button>
+      <div id="modal-top"></div>
+      <div class="modal-body-wrap">
+        <div class="modal-tags" id="modal-tags"></div>
+        <h3 class="modal-title" id="modal-title"></h3>
+        <span class="modal-year" id="modal-year"></span>
+        <p class="modal-desc" id="modal-desc"></p>
+        <a href="#" class="modal-link" id="modal-link" target="_blank">View Project ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ──────────────────────────────────────────
+       PROJECTS
+       Single photo:  photo: 'assets/images/ski.jpg', photoAlt: 'description'
+       Multi media:   media: [
+                        { src: 'assets/images/a.jpg', alt: 'desc', type: 'image' },
+                        { src: 'assets/images/b.MOV', alt: 'desc', type: 'video' },
+                      ]
+       No photo:      photo: null  (shows placeholder)
+    ─────────────────────────────────────────── */
+    const projects = [
+      {
+        title: "Powderhound — R&D Motion Tracker",
+        year: "2025 — Present",
+        tags: ["ESP32-S3", "FreeRTOS", "PCB", "IMU", "Vibrometer", "Sports Tech", "Carv"],
+        photo: "assets/images/powderhound.jpg",
+        photoAlt: "Powderhound tracker PCB mounted on a HEAD ski boot",
+        desc: "A high-frequency boot-mounted motion tracker for Carv's data science team — collecting motion data 24–50× faster than Carv 2, with multiple IMU orientations and a vibrometer, to tune motion fusion algorithms.",
+        detail: `Why: Carv's existing sensors collect motion data at a rate that limits how precisely the data science team can tune motion fusion algorithms. Powderhound fixes that.
+
+What: A new "fat-tracker" that clips directly to a ski boot — a cross between Misty (our instrumented ski system) and the Carv 2 production sensor. It captures motion data 24–50× faster than Carv 2, with none of the setup overhead of the Misty skis. Key hardware on the custom PCB:
+  • ESP32-S3-WROOM-1 (main MCU + wireless)
+  • THREE motion sensors at different orientations
+  • Vibrometer — for a wider array of signal types and ground-truth validation data
+  • On-board USB-C charging
+  • SD card with 50× the data collection and storage capacity of Carv 2
+
+The additional sensor variety (different IMU types, different axes, vibrometer) means the data science team can validate algorithms against a much richer dataset than was previously possible.
+
+Status: currently fine-tuning prototypes; targeting summer ski testing for deployment.`,
+        link: "https://getcarv.com"
+      },
+      {
+        title: "Misty One - Instrumented Ski Platform",
+        year: "2025 — Present",
+        tags: ["FreeRTOS", "C/C++", "PCB", "FPC", "IMU", "Sports Tech", "Carv"],
+        media: [
+          { src: "assets/images/misty/misty_lucy.jpg", alt: "Misty One on the Snow", type: "image" },
+          { src: "assets/images/misty/misty_rack.jpg", alt: "Misty on a Rack", type: "image" },
+          { src: "assets/images/misty/misty_fpc.jpg", alt: "Misty's Pressure Sensor Internals'", type: "image" },
+          { src: "assets/images/misty/misty_snow.jpg", alt: "Misty on the Snow", type: "image" },
+          { src: "assets/images/misty/miranda_misty.jpg", alt: "Me holding Misty One", type: "image" },
+          { src: "assets/images/misty/misty_lights.MOV", alt: "Misty's New App", type: "video" },
+        ],
+        desc: "Smart skis that track a skier's centre of balance in real time for sports science R&D at Carv — from FreeRTOS firmware to PCB layout to testing on the hill in Innsbruck.",
+        detail: `The platform streams real-time pressure distribution and 6-axis IMU data from embedded sensors in the ski binding to Carv's mobile app over Bluetooth LE.
+
+My scope covers the full stack: writing FreeRTOS-based firmware and custom drivers in C/C++ from scratch; selecting and integrating IMUs, vibrometers, and multi-channel ADCs; designing schematics and laying out PCBs and FPCs in KiCad; and assembling and testing prototypes on the hill. I also built a separate coulomb-counting test device to characterise battery performance and improve state-of-charge estimation in production devices.`,
+        link: "https://getcarv.com"
+      },
+      {
+        title: "fMRI-Compatible Refreshable Braille Display",
+        year: "2023 – 2024",
+        tags: ["NewHaptics", "Haptics", "Accessibility", "PCB Assembly", "Python"],
+        media: [{ src: "https://docs.google.com/presentation/d/1oCAZ3psmBA76ExmMAKi5Jn_Zjn0VQngyqrihssc8r6Q", alt: "fMRI-compatible braille display presentation", type: "embed" }],
+        desc: "Non-metal refreshable braille display designed for use inside MRI machines. Built at NewHaptics, deployed to researchers at Johns Hopkins.",
+        detail: `Standard refreshable braille displays are incompatible with MRI environments due to metal components. This prototype replaces metal actuation with pneumatic fluidic actuators, enabling braille display use inside a scanner for neuroscience and accessibility research.
+
+My role at NewHaptics: prototype assembly including PCB population and manufacturing of fluidic chips; developing MATLAB and Python scripts for client research applications; coordinating directly with Johns Hopkins researchers to define requirements and delivering a packaged device under tight deadlines; and incorporating blind user feedback into iterative design improvements.`,
+        link: "https://newhaptics.com"
+      },
+      {
+        title: "Tactile: Virtual Study Tool for the Blind",
+        year: "2023 – 2024",
+        tags: ["ATmega2560", "PCB", "Embedded C", "Haptics", "EECS 473 Capstone"],
+        media: [
+          { src: "assets/images/tactile/one.png", alt: "users testing out Tactile", type: "image" },
+          { src: "assets/images/tactile/five.png", alt: "Tactile prototype on demo day", type: "image" },
+          { src: "assets/images/tactile/two.png", alt: "software state diagram", type: "image" },
+          { src: "assets/images/tactile/three.png", alt: "component block diagram", type: "image" },
+          { src: "assets/images/tactile/four.png", alt: "Demo rendering", type: "image" },
+
+        ],
+        desc: "A standalone flashcard and note-taking device for visually impaired students, built around NewHaptics' multi-line refreshable braille display. Top-scoring EECS 473 capstone; fully functional on demo day.",
+        detail: `The device lets visually impaired students load flashcard decks, flip through cards, write notes using an external keyboard, and save files — all without a computer. An LCD previews the braille content for sighted observers.
+
+My contributions: high-level software design and state machine architecture, custom C driver API for the braille display (porting NewHaptics' Python API to run directly on the ATmega2560), PCB design and surface-mount soldering, SolidWorks CAD for the 3D-printed enclosure, and liaison with the NewHaptics team throughout the semester.
+
+Stack: ATmega2560, SPI SD card reader (FAT32), PS/2 keyboard, UART to braille display, piezo buzzer with volume control. Submitted fully functional two days ahead of a truncated deadline.`,
+        link: null
+      },
+
+
+      {
+        title: "HASEL Actuators as a Soft Robotic Gripper",
+        year: "2020 – 2022",
+        tags: ["Soft Robotics", "HASEL", "SolidWorks", "Research", "ROAHM Lab", "EMBiR Lab"],
+        photo: "assets/images/poster.jpg",
+        photoAlt: "HASEL gripper holding objects",
+        desc: "Designed and built soft robotic grippers using HASEL actuators capable of lifting and releasing objects — in U of M's ROAHM and EMBiR Labs under Prof. Ram Vasudevan and Prof. Talia Y. Moore.",
+        detail: `Goal: create a gripper that can quickly lift, release, and ultimately throw objects using hydraulically amplified self-healing electrostatic (HASEL) actuators — without rigid components.
+
+HASEL actuators use electrostatic forces to pump hydraulic fluid, producing muscle-like motion. Starting from the Keplinger Research Group's foundational work, I designed and tested three actuator geometries:
+  • Curling actuators
+  • Twisting actuators arranged in a Fibonacci spiral
+  • "Webbed" multiple-connected actuators
+
+I used SolidWorks to design mounting bases and connectors for each configuration, then manually tested two two-finger gripper designs:
+  • Inverted fingers with gecko tape — successfully lifted ping pong balls and small paper cups
+  • Curled fingers — successfully lifted small dishes and paper cups
+
+Both configurations were limited by object weight and roundness: heavier objects (>5g) forced the fingers apart, and round objects tended to roll sideways out of the grip.
+
+The project was conducted in collaboration with the EMBiR Lab (Evolution and Motion of Biology and Robotics). Supervised by Prof. Ram Vasudevan and Prof. Talia Y. Moore, with support from Daniel Bruder and Zac Brei.`,
+        link: null
+      },
+      {
+        title: "ACL Imaging Rig",
+        year: "2023",
+        tags: ["SolidWorks", "Form 3 SLA", "Mechanical Design", "Research"],
+        photo: null,
+        photoAlt: "ACL imaging rig",
+        desc: "Modular imaging rig for ACL ligament research, designed and manufactured for the Arruda Lab at U of M using SolidWorks and Form 3 SLA 3D printing.",
+        detail: `Designed a modular fixture to hold and precisely position ACL ligament samples for imaging during mechanical testing experiments in the Arruda Lab. The rig needed to be reconfigurable for different sample sizes and imaging angles.
+
+Process: iterative CAD design in SolidWorks, fabrication on the Form 3 SLA printer, and multiple rounds of design review with the Mechanical Engineering department chair. Implemented feedback into successive prototype revisions.`,
+        link: null
+      }
+    ];
+
+    /* ── PRESS DATA ── */
+    const press = [
+      {
+        outlet: "East Coast Greenway",
+        headline: "Meet East Coast Greenway thru-rider Miranda Baltaxe",
+        preview: "We're thrilled to celebrate Miranda Baltaxe's incredible accomplishment as she completed the journey of a lifetime, riding the East Coast Greenway route …",
+        context: "In Fall 2024 I cycled 3,000 miles from the Canadian border to Key West, Florida — 77 days solo on the East Coast Greenway, armed with a Garmin Edge Explore and a YouTube-based bike mechanic education. The Greenway team interviewed me when I passed through their HQ in North Carolina.",
+        url: "https://greenway.org/stories/meet-east-coast-greenway-thru-rider-miranda-baltaxe",
+        thumb: "assets/images/IMG_3492.jpeg",
+        thumbAlt: "Miranda on the East Coast Greenway"
+      },
+      {
+        outlet: "University of Michigan EECS",
+        headline: "2024 Undergraduate Student Awards",
+        preview: "These students are recognised for their outstanding scholarship, research, service, leadership, and entrepreneurship.",
+        context: "I was awarded the Commercialisation/Entrepreneurship Award by U of M's ECE Department for my work creating pneumatic refreshable braille displays with NewHaptics — including the fMRI-compatible prototype deployed to Johns Hopkins researchers.",
+        url: "https://eecs.engin.umich.edu/stories/2024-undergraduate-student-awards",
+        thumb: "assets/images/IMG_8163.jpeg",
+        thumbAlt: "Miranda receiving her award at University of Michigan"
+      }
+    ];
+
+    /* ── MEDIA HELPER ── */
+    function getMedia(p) {
+      if (p.media && p.media.length) return p.media;
+      if (p.photo) return [{ src: p.photo, alt: p.photoAlt || '', type: 'image' }];
+      return [];
+    }
+
+    /* ── RENDER PROJECTS ── */
+    const grid = document.getElementById('projects-grid');
+    projects.forEach((p, i) => {
+      const card = document.createElement('div');
+      card.className = 'project-card reveal';
+      card.style.transitionDelay = `${i * 0.07}s`;
+      const media = getMedia(p);
+      const first = media[0];
+      const photoHTML = first
+        ? `<div class="card-photo">${first.type === 'video'
+          ? `<video src="${first.src}" muted playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;"></video>`
+          : first.type === 'embed'
+            ? `<img src="${first.src}/export/png" alt="${first.alt}" loading="lazy">`
+            : `<img src="${first.src}" alt="${first.alt}" loading="lazy">`
+        }</div>`
+        : `<div class="card-photo empty"><div class="ph-icon">📷</div><div class="ph-text">${p.photoAlt || ''}</div></div>`;
+      card.innerHTML = `${photoHTML}
+    <div class="card-body">
+      <div class="card-tags">${p.tags.map(t => `<span class="card-tag">${t}</span>`).join('')}</div>
+      <div class="card-title">${p.title}</div>
+      <p class="card-desc">${p.desc}</p>
+    </div>
+    <div class="card-footer">
+      <span class="card-year">${p.year}</span>
+      <div class="card-arrow">↗</div>
+    </div>`;
+      card.addEventListener('click', () => openModal(p));
+      grid.appendChild(card);
+    });
+
+    /* ── RENDER PRESS ── */
+    const pressList = document.getElementById('press-list');
+    press.forEach((item, i) => {
+      const el = document.createElement('a');
+      el.className = 'press-card reveal';
+      el.href = item.url; el.target = '_blank'; el.rel = 'noopener';
+      el.style.transitionDelay = `${i * 0.1}s`;
+      el.innerHTML = `
+    <div class="press-thumb-wrap">
+      <img class="press-thumb" src="${item.thumb}" alt="${item.thumbAlt}"
+           onerror="this.parentElement.innerHTML='<div class=\\'press-thumb-ph\\'><span>// photo</span></div>'">
+    </div>
+    <div class="press-info">
+      <div class="press-outlet">${item.outlet}</div>
+      <div class="press-headline">${item.headline}</div>
+      <p class="press-preview">${item.preview}</p>
+      <p class="press-context">${item.context}</p>
+    </div>`;
+      pressList.appendChild(el);
+    });
+
+    /* ── MODAL ── */
+    const overlay = document.getElementById('modal-overlay');
+    const modalLink = document.getElementById('modal-link');
+
+    function buildSlideshow(top, media) {
+      if (media.length === 0) {
+        top.innerHTML = `<div class="modal-top-bar"></div>`;
+        return;
+      }
+      if (media.length === 1) {
+        const m = media[0];
+        const el = m.type === 'video'
+          ? `<video class="modal-img" src="${m.src}" controls muted playsinline></video>`
+          : m.type === 'embed'
+            ? `<iframe class="modal-embed" src="${m.src}/embed" allowfullscreen title="${m.alt}"></iframe>`
+            : `<img class="modal-img" src="${m.src}" alt="${m.alt}">`;
+        top.innerHTML = `<div class="modal-media-wrap">${el}</div>`;
+        return;
+      }
+      const slides = media.map((m, i) => `<div class="slideshow-slide${i === 0 ? ' active' : ''}">${m.type === 'video'
+        ? `<video src="${m.src}" controls muted playsinline></video>`
+        : m.type === 'embed'
+          ? `<iframe class="modal-embed" src="${m.src}/embed" allowfullscreen title="${m.alt}"></iframe>`
+          : `<img src="${m.src}" alt="${m.alt}">`
+        }</div>`).join('');
+      const dots = media.map((_, i) =>
+        `<div class="slideshow-dot${i === 0 ? ' active' : ''}" data-i="${i}"></div>`
+      ).join('');
+      top.innerHTML = `<div class="modal-slideshow">
+        ${slides}
+        <button class="slideshow-btn prev">&#8249;</button>
+        <button class="slideshow-btn next">&#8250;</button>
+        <div class="slideshow-dots">${dots}</div>
+      </div>`;
+      let current = 0;
+      const slideEls = top.querySelectorAll('.slideshow-slide');
+      const dotEls = top.querySelectorAll('.slideshow-dot');
+      function goTo(n) {
+        slideEls[current].classList.remove('active');
+        current = (n + media.length) % media.length;
+        slideEls[current].classList.add('active');
+        dotEls.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+      top.querySelector('.prev').addEventListener('click', () => goTo(current - 1));
+      top.querySelector('.next').addEventListener('click', () => goTo(current + 1));
+      dotEls.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.i)));
+    }
+
+    function closeModal() {
+      overlay.classList.remove('open');
+      document.getElementById('modal-top').querySelectorAll('video').forEach(v => v.pause());
+    }
+
+    function openModal(p) {
+      const top = document.getElementById('modal-top');
+      buildSlideshow(top, getMedia(p));
+      document.getElementById('modal-tags').innerHTML = p.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
+      document.getElementById('modal-title').textContent = p.title;
+      document.getElementById('modal-year').textContent = p.year;
+      document.getElementById('modal-desc').textContent = p.detail;
+      if (p.link) { modalLink.href = p.link; modalLink.style.display = 'inline-flex'; }
+      else { modalLink.style.display = 'none'; }
+      overlay.classList.add('open');
+      document.getElementById('modal').scrollTop = 0;
+    }
+    document.getElementById('modal-close').addEventListener('click', closeModal);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+
+    /* ── NAV scroll ── */
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 70);
+    });
+
+    /* ── Hero background: use real photo, fallback to teal grid ── */
+    /*const heroBg = document.getElementById('hero-bg');
+    const testImg = new Image();
+    testImg.onload = () => { heroBg.style.backgroundImage = "url('hero.jpeg')"; };
+    testImg.onerror = () => { heroBg.classList.add('no-photo'); };
+    testImg.src = 'hero.jpeg'; */
+
+    /* ── Scroll reveal ── */
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
 </body>
 
 </html>
