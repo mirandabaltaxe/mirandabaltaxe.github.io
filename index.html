@@ -5,6 +5,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Miranda Baltaxe — Hardware Engineer</title>
+  <!-- <meta name="description" content="Miranda Baltaxe — embedded & hardware engineer in London, UK. Sports tech, robotics, and wearables." />
+  <meta property="og:title" content="Miranda Baltaxe — Hardware Engineer" />
+  <meta property="og:description" content="Embedded & hardware engineer in London, UK. Sports tech, robotics, and wearables." />
+  <meta property="og:image" content="https://mirandabaltaxe.github.io/og-image.jpg" />
+  <meta property="og:url" content="https://mirandabaltaxe.github.io" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://mirandabaltaxe.github.io/og-image.jpg" /> -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Space+Mono:ital@0;1&display=swap"
@@ -171,7 +179,7 @@
       font-size: 0.63rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--blush-lt);
+      color: #fff;
       margin-bottom: 1rem;
       animation: fadeUp 0.6s ease both;
       text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
@@ -568,6 +576,18 @@
       background: var(--gold);
       transform: translate(2px, -2px);
     }
+
+    .card-company-badge {
+      display: flex;
+      align-items: center;
+    }
+
+    .card-company-badge img {
+      height: 18px;
+      width: auto;
+      display: block;
+    }
+
 
     /* ── MODAL ── */
     .modal-overlay {
@@ -1533,7 +1553,7 @@
           <div class="cv-block-title">Contact</div>
           <p class="cv-detail" style="line-height:2.1">
             <a>
-              {firstname}.{lastname}@yahoo.com
+              miranda.baltaxe at yahoo dot com
             </a><br>
             <a href="https://www.linkedin.com/in/miranda-baltaxe/" target="_blank"
               style="color:var(--blush)">linkedin.com/in/miranda-baltaxe</a><br>
@@ -1585,6 +1605,7 @@
       {
         title: "Powderhound — R&D Motion Tracker",
         year: "2025 — Present",
+        company: "carv",
         tags: ["ESP32-S3", "FreeRTOS", "PCB", "IMU", "Vibrometer", "Sports Tech", "Carv"],
         //photo: "assets/images/powderhound.jpg",
         photo: null,
@@ -1603,6 +1624,7 @@ Status: currently fine-tuning prototypes; targeting summer ski testing for deplo
       {
         title: "Misty One - Instrumented Ski Platform",
         year: "2025 — Present",
+        company: "carv",
         tags: ["FreeRTOS", "C/C++", "PCB", "FPC", "IMU", "Sports Tech", "Carv"],
         media: [
           { src: "assets/images/misty/misty_lucy.jpg", alt: "Misty One on the Snow", type: "image" },
@@ -1621,6 +1643,7 @@ My scope covers the full stack: writing FreeRTOS-based firmware and custom drive
       {
         title: "fMRI-Compatible Refreshable Braille Display",
         year: "2023 – 2024",
+        company: "newhaptics",
         tags: ["NewHaptics", "Haptics", "Accessibility", "PCB Assembly", "Python"],
         media: [{ src: "https://docs.google.com/presentation/d/1oCAZ3psmBA76ExmMAKi5Jn_Zjn0VQngyqrihssc8r6Q", alt: "fMRI-compatible braille display presentation", type: "embed" }],
         desc: "Non-metal refreshable braille display designed for use inside MRI machines. Built at NewHaptics, deployed to researchers at Johns Hopkins.",
@@ -1725,6 +1748,10 @@ Process: iterative CAD design in SolidWorks, fabrication on the Form 3 SLA print
       card.style.transitionDelay = `${i * 0.07}s`;
       const media = getMedia(p);
       const first = media[0];
+      const logoFmt = { carv: 'png', newhaptics: 'png' };
+      const badgeHTML = p.company
+        ? `<div class="card-company-badge card-company-badge--${p.company}"><img src="assets/logos/${p.company}.${logoFmt[p.company] || 'svg'}" alt="${p.company}" onerror="this.parentElement.style.display='none'"></div>`
+        : '';
       const photoHTML = first
         ? `<div class="card-photo">${first.type === 'video'
           ? `<video src="${first.src}" muted playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;"></video>`
@@ -1741,7 +1768,7 @@ Process: iterative CAD design in SolidWorks, fabrication on the Form 3 SLA print
     </div>
     <div class="card-footer">
       <span class="card-year">${p.year}</span>
-      <div class="card-arrow">↗</div>
+      <div style="display:flex;align-items:center;gap:0.6rem;">${badgeHTML}<div class="card-arrow">↗</div></div>
     </div>`;
       card.addEventListener('click', () => openModal(p));
       grid.appendChild(card);
