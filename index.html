@@ -171,9 +171,10 @@
       font-size: 0.63rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--blush);
+      color: var(--blush-lt);
       margin-bottom: 1rem;
       animation: fadeUp 0.6s ease both;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
     }
 
     .hero-name {
@@ -1196,7 +1197,7 @@
 
   <!-- NAV -->
   <nav id="nav">
-    <a href="#hero" class="nav-logo">baltaxe</a>
+    <a href="#hero" class="nav-logo">mbaltaxe</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Work</a></li>
@@ -1212,8 +1213,9 @@
       <p class="hero-eyebrow">// embedded & hardware engineer · sports tech · robotics · London, UK</p>
       <h1 class="hero-name">Miranda<br><em>Baltaxe</em></h1>
       <p class="hero-bio">
-        I design wearable devices, embedded systems, and custom PCBs. I create
-        hardware that exists in the physical world and holds up under pressure.
+        I build the embedded hardware tools that allow you to unlock the research, application or goal that
+        you can't quite reach
+        with off-the-shelf devices.
         Right now, I'm building instrumented skis for sports science R&amp;D at
         <a href="https://getcarv.com" target="_blank">Carv</a>.
       </p>
@@ -1222,7 +1224,7 @@
         <span class="hero-tag">PCB & FPC Design</span>
         <span class="hero-tag">Sports Tech</span>
         <span class="hero-tag">Robotics</span>
-        <span class="hero-tag">Summa Cum Laude · U of M</span>
+        <span class="hero-tag">Michigan Engineering Grad</span>
         <span class="hero-tag">Long-Distance Cycling</span>
       </div>
     </div>
@@ -1247,7 +1249,7 @@
       </div>
       <div class="about-text">
         <span class="eyebrow">// Hello</span>
-        <h2>Hardware Engineer,<br> Sports Tech Tinkerer,<br> &amp; Touching Grass.</h2>
+        <h2>Hardware Engineer,<br> PCB Tinkerer,<br> &amp; Maker.</h2>
         <p>
           Welcome! I'm Miranda, an embedded systems and hardware engineer specializing in wearable devices, PCB design,
           and firmware. I'm drawn to work that sits at the edge of electronics and the physical world:
@@ -1342,25 +1344,89 @@
       <!-- MAIN COLUMN -->
       <div>
         <div class="cv-block reveal">
-          <div class="cv-block-title">Experience</div>
+          <div class="cv-block-title">Relevant Experience</div>
 
           <div class="cv-entry">
             <div class="cv-entry-header">
               <span class="cv-role">Embedded &amp; Electronics Engineer</span>
               <span class="cv-period">June 2025 — Present</span>
             </div>
-            <p class="cv-place">Motion Metrics Ltd. (Carv) · London, UK &amp; Innsbruck, Austria</p>
+            <p class="cv-place">Motion Metrics Ltd. (Carv) · London, UK &amp; Innsbruck, AT</p>
             <ul class="cv-bullets">
-              <li>Developed custom FreeRTOS firmware and drivers in C/C++ enabling smart skis to track boot pressure
-                distribution and motion for balance metrics research in the Carv app.</li>
+              <li>Developed custom firmware and drivers (in C/C++) enabling smart skis to track boot pressure
+                distribution and motion for balance metrics research supporting Carv's mobile app.</li>
               <li>Designed schematics and laid out PCBs and FPCs in KiCad, integrating IMUs, microcontrollers, ADCs, and
                 peripheral components for prototype skis.</li>
-              <li>Built a test device and firmware for coulomb counting to characterise battery performance and provide
+              <li>Built a test device and firmware for coulomb counting to characterize battery performance and provide
                 more accurate state-of-charge estimation in production devices.</li>
-              <li>Performed hardware bring-up, debugging, and verification using oscilloscopes and JTAG tools, and
-                investigated warranty-returned devices documenting root causes and proposing improvements.</li>
+              <li>Performed hardware bring-up, debugging, and verification using oscilloscopes, JTAG tools, and custom
+                test protocols, ensuring reliable operation across prototypes.</li>
+              <li>Investigated and repaired warranty-returned devices for battery failure and other issues, documenting
+                root causes and proposing hardware and firmware improvements to increase long-term product reliability.
+              </li>
             </ul>
           </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <span class="cv-role">Engineering Intern</span>
+              <span class="cv-period">June 2023 – Aug. 2024</span>
+            </div>
+            <p class="cv-place">NewHaptics · Ann Arbor, MI</p>
+            <ul class="cv-bullets">
+              <li>Prototyped a refreshable braille display with non-metal components for fMRI compatibility; deployed to
+                Johns Hopkins researchers</li>
+              <li>Developed MATLAB &amp; Python scripts for client research applications, enhancing usability and
+                adoption</li>
+              <li>Coordinated directly with clients to define requirements and delivered a packaged device under tight
+                deadlines</li>
+              <li>Incorporated blind user feedback into iterative design improvements and documented modifications for
+                future development</li>
+            </ul>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <span class="cv-role">Research Assistant</span>
+              <span class="cv-period">May – Aug. 2023</span>
+            </div>
+            <p class="cv-place">Arruda Lab · Ann Arbor, MI</p>
+            <ul class="cv-bullets">
+              <li>Designed and manufactured a modular imaging rig for ACL ligament research using SolidWorks and Form 3
+              </li>
+              <li>Presented design reviews to Mechanical Engineering dept. chair and implemented feedback into
+                prototypes</li>
+            </ul>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <span class="cv-role">Research Assistant</span>
+              <span class="cv-period">Aug. 2020 – Dec. 2022</span>
+            </div>
+            <p class="cv-place">ROAHM Lab · Ann Arbor, MI</p>
+            <ul class="cv-bullets">
+              <li>Researched hydraulically amplified self-healing electrostatic (HASEL) actuators for a soft robotic
+                hand.</li>
+              <li>Designed actuators with varying geometries, collected performance data, and developed MATLAB analysis
+                methods.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cv-block reveal">
+          <div class="cv-block-title">Education</div>
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <span class="cv-role">BSE in Computer Engineering (Embedded Systems Concentration)</span>
+              <span class="cv-period">Summa Cum Laude · 3.89 GPA</span>
+            </div>
+            <p class="cv-place">University of Michigan, Ann Arbor</p>
+          </div>
+        </div>
+
+        <div class="cv-block reveal">
+          <div class="cv-block-title">Additional Experience</div>
 
           <div class="cv-entry">
             <div class="cv-entry-header">
@@ -1377,37 +1443,7 @@
 
           <div class="cv-entry">
             <div class="cv-entry-header">
-              <span class="cv-role">Engineering Intern</span>
-              <span class="cv-period">June 2023 – Aug. 2024</span>
-            </div>
-            <p class="cv-place">NewHaptics · Ann Arbor, MI</p>
-            <ul class="cv-bullets">
-              <li>Prototyped a refreshable braille display with non-metal components for fMRI compatibility; deployed to
-                Johns Hopkins researchers.</li>
-              <li>Developed MATLAB &amp; Python scripts for client research applications, enhancing usability and
-                adoption.</li>
-              <li>Coordinated directly with clients to define requirements and delivered a packaged device under tight
-                deadlines; incorporated blind user feedback into iterative design.</li>
-            </ul>
-          </div>
-
-          <div class="cv-entry">
-            <div class="cv-entry-header">
-              <span class="cv-role">Research Assistant — Arruda Lab</span>
-              <span class="cv-period">May – Aug. 2023</span>
-            </div>
-            <p class="cv-place">University of Michigan · Ann Arbor, MI</p>
-            <ul class="cv-bullets">
-              <li>Designed and manufactured a modular imaging rig for ACL ligament research using SolidWorks and Form 3
-                SLA printing.</li>
-              <li>Presented design reviews to the Mechanical Engineering department chair and implemented feedback into
-                prototypes.</li>
-            </ul>
-          </div>
-
-          <div class="cv-entry">
-            <div class="cv-entry-header">
-              <span class="cv-role">Manufacturing Engineering Intern</span>
+              <span class="cv-role">Manufacturing Mechanical Engineering Intern</span>
               <span class="cv-period">May – July 2021</span>
             </div>
             <p class="cv-place">General Motors · Romulus, MI</p>
@@ -1420,68 +1456,22 @@
 
           <div class="cv-entry">
             <div class="cv-entry-header">
-              <span class="cv-role">Research Assistant — ROAHM Lab</span>
-              <span class="cv-period">Aug. 2020 – Dec. 2022</span>
+              <span class="cv-role">Leadership</span>
             </div>
-            <p class="cv-place">University of Michigan · Ann Arbor, MI</p>
             <ul class="cv-bullets">
-              <li>Designed and tested HASEL (hydraulically amplified self-healing electrostatic) actuator grippers
-                capable of lifting and releasing objects, supervised by Prof. Ram Vasudevan and Prof. Talia Y. Moore.
-              </li>
-              <li>Implemented three actuator geometries — curling, Fibonacci-spiral twisting, and "webbed" — using
-                SolidWorks to design mounting bases and connectors for each configuration.</li>
-              <li>Delivered weekly research updates to professors and PhD students; conducted literature reviews
-                benchmarking designs against Keplinger Research Group publications.</li>
+              <li><strong>Captain, University of Michigan Flywheel Ultimate (2019–2025):</strong> Managed operations for
+                50+ athletes and six coaches, including scheduling, training, recruiting, and executive board
+                leadership.</li>
+              <li><strong>Regional Director, USA Ultimate - Great Lakes (2022–2023):</strong> Directed logistics,
+                compliance, and competition management for DI/DIII sectional and regional tournaments.</li>
             </ul>
           </div>
         </div>
 
-        <div class="cv-block reveal">
-          <div class="cv-block-title">Education</div>
-          <div class="cv-entry">
-            <div class="cv-entry-header">
-              <span class="cv-role">BSE Computer Engineering · Embedded Systems Concentration</span>
-              <span class="cv-period">2020 – 2024</span>
-            </div>
-            <p class="cv-place">University of Michigan, Ann Arbor · Summa Cum Laude · 3.89 GPA</p>
-            <ul class="cv-bullets">
-              <li>ECE Commercialisation &amp; Entrepreneurship Award, 2024 — for pneumatic refreshable braille display
-                work with NewHaptics.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="cv-block reveal">
-          <div class="cv-block-title">Leadership</div>
-          <div class="cv-entry">
-            <div class="cv-entry-header">
-              <span class="cv-role">Captain — U of M Flywheel Ultimate</span>
-              <span class="cv-period">2019 – 2025</span>
-            </div>
-            <p class="cv-place">University of Michigan Women's Ultimate Frisbee</p>
-            <ul class="cv-bullets">
-              <li>Managed operations for 50+ athletes and six coaches, including scheduling, training, recruiting, and
-                executive board leadership. Achieved a winning record in first post-Covid season.</li>
-            </ul>
-          </div>
-          <div class="cv-entry">
-            <div class="cv-entry-header">
-              <span class="cv-role">Regional Director — USA Ultimate Great Lakes</span>
-              <span class="cv-period">2022 – 2023</span>
-            </div>
-            <p class="cv-place">USA Ultimate</p>
-            <ul class="cv-bullets">
-              <li>Directed logistics, compliance, and competition management for DI/DIII sectional and regional
-                tournaments.</li>
-            </ul>
-          </div>
-        </div>
-
-        <a href="assets/resume/Resume_-_Miranda_Baltaxe_-_Embedded_Engineer.pdf" target="_blank"
-          class="cv-download-btn">↓ Download Full CV</a>
+        <a href="assets/resume/resume.pdf" target="_blank" class="cv-download-btn">↓ Download Full CV</a>
 
         <div class="cv-pdf-wrap reveal" style="margin-top:2.5rem">
-          <iframe src="assets/resume/Resume_-_Miranda_Baltaxe_-_Embedded_Engineer.pdf" width="100%" height="620px"
+          <iframe src="assets/resume/resume.pdf" width="100%" height="620px"
             style="border:none;display:block;"></iframe>
         </div>
       </div>
@@ -1497,7 +1487,7 @@
             <span class="cv-skill">FPC Design</span>
             <span class="cv-skill">KiCad</span>
             <span class="cv-skill">Embedded Firmware</span>
-            <span class="cv-skill">BLE / RF</span>
+            <span class="cv-skill">Schematic Design</span>
             <span class="cv-skill">IMU Integration</span>
             <span class="cv-skill">Battery / Coulomb Counting</span>
             <span class="cv-skill">JTAG / Oscilloscope</span>
@@ -1542,11 +1532,13 @@
         <div class="cv-block reveal" style="margin-top:2rem">
           <div class="cv-block-title">Contact</div>
           <p class="cv-detail" style="line-height:2.1">
-            <a href="mailto:miranda.baltaxe@yahoo.com" style="color:var(--blush)">miranda.baltaxe@yahoo.com</a><br>
+            <a>
+              {firstname}.{lastname}@yahoo.com
+            </a><br>
             <a href="https://www.linkedin.com/in/miranda-baltaxe/" target="_blank"
               style="color:var(--blush)">linkedin.com/in/miranda-baltaxe</a><br>
-            <a href="https://getcarv.com" target="_blank" style="color:var(--blush)">getcarv.com</a><br>
-            <a href="https://newhaptics.com" target="_blank" style="color:var(--blush)">newhaptics.com</a>
+            <a href="https://github.com/mirandabaltaxe" target="_blank"
+              style="color:var(--blush)">github.com/mirandabaltaxe</a><br>
           </p>
         </div>
       </div>
@@ -1556,15 +1548,11 @@
   <!-- FOOTER -->
   <footer>
     <div>
-      <div class="footer-logo">baltaxe</div>
-      <p class="footer-copy">© 2025 Miranda Baltaxe · All rights reserved</p>
+      <div class="footer-logo">mbaltaxe</div>
+      <p class="footer-copy">© 2026 Miranda Baltaxe · All rights reserved</p>
     </div>
     <ul class="footer-links">
-      <li><a href="mailto:miranda.baltaxe@yahoo.com">Email</a></li>
       <li><a href="https://www.linkedin.com/in/miranda-baltaxe/" target="_blank">LinkedIn</a></li>
-      <li><a href="https://getcarv.com" target="_blank">Carv</a></li>
-      <li><a href="https://greenway.org/stories/meet-east-coast-greenway-thru-rider-miranda-baltaxe"
-          target="_blank">East Coast Greenway</a></li>
     </ul>
   </footer>
 
